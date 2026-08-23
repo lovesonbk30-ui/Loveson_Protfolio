@@ -40,13 +40,13 @@ def home():
 		else:
 			flash('⛔️ Invalid credentials', 'danger')
 			return redirect('/')
-	return render_template_string("Login_Page")
+	return render_template_string("Login_Page.html")
 	
 @app.route('/profile')
 def profile():
 	if not session.get('logged_in'):
 		return redirect('/')
-	return render_template("Protfolio_Page", message=message)
+	return render_template("Protfolio_Page.html", message=message)
 	
 @app.route('/logout')
 def logout():
