@@ -1,0 +1,163 @@
+<style>
+body{
+justify-content: center;
+margin: 1px;
+}
+header{
+padding: 10px;
+display: flex;
+background: #220C78;
+gap: 5px;
+}
+.brand{
+font-size: 2.5rem;
+color: white;
+display: flex;
+font-family: times new roman;
+font-weight: bold;
+}
+.brand span{
+color: #E91111;
+}
+.nav{
+width: 100px;
+background: #DFE6FB;
+border-radius: 15px;
+list-style: none;
+display: flex;
+margin-left: 32rem;
+
+
+}
+.nav:active{
+background: #BFD0FD;
+}
+.nav a:active{
+background: #BFD0FD;
+}
+
+a{
+color: #FBB22C;
+text-decoration: none;
+font-size: 1.5rem;
+text-align: center;
+font-weight: bold;
+
+}
+.container{
+display: flex;
+flex-direction: grid;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+background: #E01F06;
+max-width: 800px;
+width: 500px;
+margin: 50px auto;
+padding: 10px;
+box-shadow: rgba(15,0,10,0);
+}
+.login-card{
+text-align: center;
+font-size: 25px;
+color: white;
+}
+.login-card h2{
+color: #23E671;
+font-size: 2rem;
+border-bottom: 3px solid orange;
+margin:4px;
+font-family: times new roman;
+font-weight: bold;
+
+}
+.login-card span{
+color: #FBD5D8;
+}
+.login-card p{
+color: #E8E5EB;
+font-size: 15px;
+}
+.input-group input{
+background: white;
+border: 2px solid blue;
+border-radius: 40px;
+font-size: 1.4rem;
+text-align: center;
+padding: 4px;
+}
+.submit-btn{
+color: white;
+margin-top: 10px;
+background: blue;
+font-size: 22px;
+width: 300px;
+font-weight: bold;
+
+}
+.creator{
+text-align:center;
+background: #27272A;
+color: orange;
+padding: 2px;
+font-size: 1.5rem;
+font-weight: bold;
+}
+.creator span{
+font-size: 1.6rem;
+color: white;
+font-weight: bold;
+}
+.creator p{
+font-size: 20px;
+color: #E0DFE2;
+margin-top: 1px;
+}
+.flash{
+background: white;
+color: red;
+border-radius: 8px;
+padding: 8px;
+margin: 5px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">✨Loveson <span> Site</span></div>
+  <ul class="nav">
+    <li><a href="/">Home</a></li>
+  </ul>
+</header>
+
+<div class="container">
+  <div class="login-card">
+    <h2>Enter your protfolio <span>Password</span></h2>
+    <p class="subtitle">Please enter your credentials to get started.</p>
+    {% with messages = get_flashed_messages()%}
+      {%if messages %}
+        {% for message in messages %}
+           <div class='flash'> {{message}}
+           </div> 
+         {% endfor %}
+       {% endif %}
+     {% endwith %}
+    <form action="/" method="POST">
+      
+      
+      <div class="input-group">
+      
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+  </div>
+</div>
+<footer class='creator'>
+Designed by: <span> Loveson B.K. </span>
+<p> ©All rights reserved to Loveson Site </p>
+</footer>
+</body>
+</html>
