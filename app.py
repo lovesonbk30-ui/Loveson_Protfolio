@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, request, url_for, render_template_string, session, flash
+from flask import Flask, redirect, request, url_for, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -40,13 +40,13 @@ def home():
 		else:
 			flash('⛔️ Invalid credentials', 'danger')
 			return redirect('/')
-	return render_template_string(html)
+	return render_template_string("Login_Page")
 	
 @app.route('/profile')
 def profile():
 	if not session.get('logged_in'):
 		return redirect('/')
-	return render_template_string(Main, message=message)
+	return render_template("Protfolio_Page", message=message)
 	
 @app.route('/logout')
 def logout():
