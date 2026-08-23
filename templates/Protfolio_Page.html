@@ -1,0 +1,261 @@
+<style>
+body{
+
+justify-content: center;
+margin:1px;
+}
+.nav{
+display: flex;
+background: #FA1A0A;
+margin: 1px;
+padding: 5px;
+}
+
+.nav h1{
+color: white;
+font-size: 2rem;
+font-weight: bold;
+}
+.exit{
+
+background: orange;
+border-radius: 5px;
+width: 150px;
+height: 30px;
+text-align:center;
+margin-left: 500px;
+margin-top: 30px;
+}
+
+.exit a{
+
+font-size: 1.5rem;
+text-decoration: none;
+color: blue;
+font-weight: bold;
+}
+.hero-section{
+color: green;
+font-size: 25px;
+text-align: center;
+align-items: center;
+justify-content: center;
+}
+.welcome-title{
+color: blue;
+font-size: 1.6rem;
+background: #F9CD71;
+border-radius: 10px;
+padding:5px;
+justify-content: center;
+width: 300px;
+margin-left: 300px;
+justify-content: center;
+}
+.search-bar input{
+font-size: 25px;
+border-radius: 40px;
+border: 4px solid orange;
+padding: 8px;
+text-align: center
+}
+.search-bar button{
+font-size: 25px;
+color: white;
+padding: 8px;
+
+background: blue;
+}
+.container{
+justify-content: center;
+padding: 10px;
+margin: 10px auto;
+}
+.identity{
+background: #FFFAEB;
+border-left: 8px solid green;
+border-radius: 30px;
+padding: 8px;
+margin: 15px;
+}
+.identity h2{
+font-size: 2rem;
+color: red;
+}
+.identity p{
+font-size: 30px;
+color: #4312F3;
+margin: 1px;
+}
+.identity span{
+font-size: 25px;
+color: black;
+font-weight: bold;
+}
+.identity:hover{
+translate: 2px;
+box-shadow: black;
+}
+
+.qualification{
+background: #FFFAEB;
+border-left: 8px solid red;
+border-radius: 30px;
+padding: 8px;
+margin: 15px;
+}
+.qualification:hover{
+translate: 2px;
+box-shadow: black;
+}
+.qualification h2{
+font-size: 2rem;
+color: green;
+}
+.qualification p{
+font-size: 30px;
+color: orange;
+margin: 1px;
+}
+.qualification span{
+font-size: 25px;
+color: darkblue;
+font-weight: bold;
+}
+
+.project{
+background: #FFFAEB;
+border-left: 8px solid blue;
+border-radius: 30px;
+padding: 8px;
+margin: 15px;
+}
+.project h2{
+font-size: 2rem;
+color: brown;
+}
+.project p{
+font-size: 30px;
+color: red;
+margin: 1px;
+}
+.project:hover{
+translate: 2px;
+box-shadow: black;
+}
+.details-divider{
+margin: 3px;
+border-radius: 20px;
+border: 5px solid green;
+padding: 4px;
+text-align: center;
+font-size: 30px;
+color: blue;
+}
+.content{
+background: #156808;
+color: #E2110E;
+margin-top: 15px;
+padding: 10px;
+text-align: center;
+list-style: none;
+text-decoration: none;
+}
+.content h3{
+font-size: 1.8rem;
+color: white;
+margin-top: 10px;
+border-bottom: 3px; solid green;
+}
+.jump{
+background: #A9FFAE;
+border-radius: 20px;
+font-size: 22px;
+color: red;
+width: 500px;
+justify-content: left;
+
+padding: 2px;
+}
+.link-2{
+text-decoration: none;
+color: darkorange;
+}
+.contact{
+font-size: 1.5rem;
+color: #CFCEFD;
+text-align: left;
+list-style: ➡;
+text-decoration: none;
+}
+.address{
+text-align: left;
+font-size: 1.8rem;
+
+}
+.slogan{
+font-size: 1.6rem;
+background: #D8FDDF;
+width: 100%;
+margin-left: none;
+padding: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <h1>Loveson's Portfolio</h1>
+  <div class="exit">
+    <a href="/logout">Logout</a>
+  </div>
+</div>
+<form action='message' method='POST'>
+<div class="hero-section">
+  <h1 class="welcome-title">🎉 Welcome, Loveson!</h1>
+  <div class="search-bar">
+
+    <input class="search" name="message" placeholder="Enter your Quest ?"> 
+    <button class="search-btn">Send </button>
+  </div>
+</div>
+
+<div class="container">
+  <div class=" identity">
+    <h2>Identity</h2>
+    <p>▶ It's me <span>Loveson B.k.</span> I am specializing in Flask application development and currently working as a programmer, continuous learner, and developer.</p>
+  </div>
+
+  <div class=" qualification">
+    <h2>Qualification</h2>
+    <p>▶ Currently learning <span>Python</span> as my core language. My main area of focus is web design and core logic analysis.</p>
+  </div>
+
+  <div class=" project">
+    <h2>Project</h2>
+    <p>▶ Active in developing Python projects including data analytics, web services, and deployment workflows.</p>
+  </div>
+</div>
+
+<div class="details-divider">🔽 Additional Information</div>
+
+<div class='content' style="padding: 0 1.5rem;">
+  <footer>
+    <h3>Have questions❔</h3>
+    <p class='jump' >Visit <a class="link-2" href="https://loveson-bishokarma.onrender.com" target="_blank">Loveson site</a> for full portfolio details.</p> 
+
+    <ul class="contact">
+      <li>📞 9826340157</li>
+      <li>📱 9854832490</li>
+    </ul>
+
+    <p class="address" style="color: #F2456D; font-weight: 600;">📍 Address: <span style="color: #ffffff; font-weight: 600;">Sundarharicha-2, Morang</span></p>
+    
+    <p class="slogan">"Work in silence, let your success make the noise."</p>
+  </footer>
+
+</div>
+
+</form>
+</body>
+</html>
