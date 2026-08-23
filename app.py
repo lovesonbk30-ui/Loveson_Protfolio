@@ -40,7 +40,7 @@ def home():
 		else:
 			flash('⛔️ Invalid credentials', 'danger')
 			return redirect('/')
-	return render_template_string("Login_Page.html")
+	return render_template("Login_Page.html")
 	
 @app.route('/profile')
 def profile():
