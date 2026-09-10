@@ -62,6 +62,10 @@ def message():
 			db.session.commit()
 	return redirect('/profile')
 			
-
+@app.route('/About')
+def About:
+	
+	return render_template("About.html")
+	
 if __name__ == '__main__':
     app.run(debug=True)
