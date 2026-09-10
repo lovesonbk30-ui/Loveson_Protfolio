@@ -63,7 +63,7 @@ def message():
 	return redirect('/profile')
 			
 @app.route('/About')
-def About:
+def About():
 	
 	return render_template("About.html")
 	
