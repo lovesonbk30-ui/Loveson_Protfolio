@@ -233,6 +233,16 @@ width: 250px;
 #menu-toggle:checked ~ .menu-overlay{
 display: block;
 }
+.Notify{
+padding: 10px;
+background: grey;
+color: white;
+border-radius: 20px;
+width: 300px;
+margin: 15px;
+margin-left: 300px;
+}
+
 </style>
 </head>
 <body>
@@ -259,7 +269,13 @@ display: block;
 <div class="hero-section">
   <h1 class="welcome-title">🎉 Welcome, Loveson!</h1>
   <div class="search-bar">
-
+       {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+     <div class='Notify'>{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
     <input class="search" name="message" placeholder="Enter your Quest ?"> 
     <button class="search-btn">Send </button>
   </div>
