@@ -60,6 +60,7 @@ def message():
 			new_quest= Quest(message=user_msg)
 			db.session.add(new_quest)
 			db.session.commit()
+		    flash('Message sent!')
 	return redirect('/profile')
 			
 @app.route('/About')
