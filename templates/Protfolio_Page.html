@@ -269,13 +269,13 @@ margin-left: 300px;
 <div class="hero-section">
   <h1 class="welcome-title">🎉 Welcome, Loveson!</h1>
   <div class="search-bar">
-       {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
      <div class='Notify'>{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
     <input class="search" name="message" placeholder="Enter your Quest ?"> 
     <button class="search-btn">Send </button>
   </div>
