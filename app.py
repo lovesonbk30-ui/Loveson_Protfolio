@@ -45,7 +45,7 @@ def home():
 def profile():
 	if not session.get('logged_in'):
 		return redirect('/')
-	return render_template('Potfolio_Page.html', message=message)
+	return render_template('Protfolio_Page.html', message=message)
 	
 @app.route('/logout')
 def logout():
