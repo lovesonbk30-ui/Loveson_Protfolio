@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, request, url_for, render_template, session, flash
+from flask import Flask, redirect, request, url_for, render_template_string, session, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -23,7 +23,6 @@ class Quest(db.Model):
 with app.app_context():
 	db.create_all()
 
-
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	if session.get('logged_in'):
@@ -40,13 +39,13 @@ def home():
 		else:
 			flash('⛔️ Invalid credentials', 'danger')
 			return redirect('/')
-	return render_template("Login_Page.html")
+	return render_template_string(html)
 	
 @app.route('/profile')
 def profile():
 	if not session.get('logged_in'):
 		return redirect('/')
-	return render_template("Protfolio_Page.html", message=message)
+	return render_template_string(Main, message=message)
 	
 @app.route('/logout')
 def logout():
@@ -60,13 +59,13 @@ def message():
 			new_quest= Quest(message=user_msg)
 			db.session.add(new_quest)
 			db.session.commit()
-		flash('Message sent!')
+			flash('Message sent!')
 	return redirect('/profile')
-			
-@app.route('/About')
-def About():
 	
-	return render_template("About.html")
-	
+@app.route('/send')
+def add():
+				return render_template_string(About_Page)
+				
+
 if __name__ == '__main__':
     app.run(debug=True)
