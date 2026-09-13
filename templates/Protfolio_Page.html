@@ -243,6 +243,7 @@ margin: 15px;
 margin-left: 300px;
 }
 
+
 </style>
 </head>
 <body>
@@ -255,7 +256,7 @@ margin-left: 300px;
   
   <label for='menu-toggle' class='menu-overlay'> 
   <div class='sub-menu'>
-  <a href='/About'> 📕About </a>
+  <a href='/send'> 📕About </a>
   <a href='#'> 📃News </a>
   <a href='#'> 🖌️Arts </a>
   <a href='#'> 🔎Course </a>
@@ -268,14 +269,15 @@ margin-left: 300px;
 <form action='message' method='POST'>
 <div class="hero-section">
   <h1 class="welcome-title">🎉 Welcome, Loveson!</h1>
-  <div class="search-bar">
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      {% for message in messages %}
+       {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
      <div class='Notify'>{{ message }}</div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+  <div class="search-bar">
+
     <input class="search" name="message" placeholder="Enter your Quest ?"> 
     <button class="search-btn">Send </button>
   </div>
