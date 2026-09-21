@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Team Quiz Scoreboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #FFEFA8;
+        }
+        h1 {
+            color: red;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .scoreboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 30px auto;
+        }
+        .score-board {
+            background: #2c3e50;
+            color: white;
+            width: 280px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            position: relative;
+        }
+        .team-name-form {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        .team-name-input {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: transparent;
+            border: 1px dashed #7f8c8d;
+            border-radius: 4px;
+            text-align: center;
+            padding: 4px;
+            width: 100%;
+        }
+        .team-name-input:focus {
+            outline: none;
+            background: #34495e;
+            border-style: solid;
+            border-color: #f1c40f;
+        }
+        .score-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #f1c40f;
+        }
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .btn {
+            border: none;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn:hover {
+            opacity: 0.85;
+        }
+        .add { background-color: #2ecc71; }
+        .reset { background-color: #e67e22; }
+        .delete-team { background-color: #e74c3c; }
+        .update-btn { background-color: #3498db; font-size: 0.8rem; }
+        
+        .add-team-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .add-team-btn {
+            background-color: #9b59b6;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>QUIZ SCOREBOARD:</h1>
+
+    <div class="scoreboard-container">
+        {% for team in teams %}
+        <div class="score-board">
+            <!-- Edit Team Name -->
+            <form action="{{ url_for('update_team', team_id=team.id) }}" method="POST" class="team-name-form">
+                <input 
+                    type="text" 
+                    name="team_name" 
+                    value="{{ team.name }}" 
+                    class="team-name-input" 
+                    required 
+                />
+                <button type="submit" class="btn update-btn">Save</button>
+            </form>
+
+            <!-- Score Display -->
+            <div class="score-display">{{ team.score }}</div>
+
+            <!-- Score Adjustments & Controls -->
+            <div class="actions">
+                <form action="{{ url_for('add_score', team_id=team.id) }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="points" value="5">
+                    <button type="submit" class="btn add">+5</button>
+                </form>
+                
+                <form action="{{ url_for('add_score', team_id=team.id) }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="points" value="10">
+                    <button type="submit" class="btn add">+10</button>
+                </form>
+
+                <form action="{{ url_for('reset_score', team_id=team.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn reset">Reset</button>
+                </form>
+
+                <form action="{{ url_for('delete_team', team_id=team.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn delete-team">X</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Global Add Team Control -->
+    <div class="add-team-wrapper">
+        <form action="{{ url_for('add_team') }}" method="POST">
+            <button type="submit" class="btn add-team-btn">+ Add New Team</button>
+        </form>
+    </div>
+</body>
+</html>
