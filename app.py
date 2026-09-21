@@ -63,9 +63,53 @@ def message():
 	return redirect('/profile')
 	
 @app.route('/send')
-def add():
+def send():
 	return render_template('About.html')
-				
+@app.route('/Score')
+def score():
+    return render_template_string('Score.html', teams=teams)				
 
+@app.route('/add_team', methods=['POST'])
+def add_team():
+    global next_team_id
+    teams.append({
+        "id": next_team_id,
+        "name": f"Team {chr(64 + len(teams) + 1) if len(teams) < 26 else next_team_id}",
+        "score": 0
+    })
+    next_team_id += 1
+    return redirect(url_for('home'))
+
+@app.route('/update_team/<int:team_id>', methods=['POST'])
+def update_team(team_id):
+    new_name = request.form.get('team_name', '').strip()
+    for team in teams:
+        if team['id'] == team_id and new_name:
+            team['name'] = new_name
+            break
+    return redirect(url_for('home'))
+
+@app.route('/add_score/<int:team_id>', methods=['POST'])
+def add_score(team_id):
+    points = int(request.form.get('points', 0))
+    for team in teams:
+        if team['id'] == team_id:
+            team['score'] += points
+            break
+    return redirect(url_for('home'))
+
+@app.route('/reset_score/<int:team_id>', methods=['POST'])
+def reset_score(team_id):
+    for team in teams:
+        if team['id'] == team_id:
+            team['score'] = 0
+            break
+    return redirect(url_for('home'))
+
+@app.route('/delete_team/<int:team_id>', methods=['POST'])
+def delete_team(team_id):
+    global teams
+    teams = [t for t in teams if t['id'] != team_id]
+    return redirect(url_for('home'))
 if __name__ == '__main__':
     app.run(debug=True)
