@@ -67,7 +67,7 @@ def send():
 	return render_template('About.html')
 @app.route('/score')
 def score():
-    return render_template('Score.html', teams=teams)				
+    return render_template('Score.html')				
 
 @app.route('/add_team', methods=['POST'])
 def add_team():
