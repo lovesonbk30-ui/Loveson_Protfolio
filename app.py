@@ -65,7 +65,7 @@ def message():
 @app.route('/send')
 def send():
 	return render_template('About.html')
-@app.route('/Score')
+@app.route('/score')
 def score():
     return render_template_string('Score.html', teams=teams)				
 
