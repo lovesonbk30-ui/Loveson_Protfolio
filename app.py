@@ -83,7 +83,7 @@ def add_team():
         "score": 0
     })
     next_team_id += 1
-    return redirect(url_for('home'))
+    return redirect(url_for('score'))
 
 @app.route('/update_team/<int:team_id>', methods=['POST'])
 def update_team(team_id):
@@ -92,7 +92,7 @@ def update_team(team_id):
         if team['id'] == team_id and new_name:
             team['name'] = new_name
             break
-    return redirect(url_for('home'))
+    return redirect(url_for('score'))
 
 @app.route('/add_score/<int:team_id>', methods=['POST'])
 def add_score(team_id):
@@ -101,7 +101,7 @@ def add_score(team_id):
         if team['id'] == team_id:
             team['score'] += points
             break
-    return redirect(url_for('home'))
+    return redirect(url_for('score'))
 
 @app.route('/reset_score/<int:team_id>', methods=['POST'])
 def reset_score(team_id):
@@ -109,7 +109,7 @@ def reset_score(team_id):
         if team['id'] == team_id:
             team['score'] = 0
             break
-    return redirect(url_for('home'))
+    return redirect(url_for('score'))
 
 @app.route('/delete_team/<int:team_id>', methods=['POST'])
 def delete_team(team_id):
