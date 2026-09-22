@@ -14,6 +14,11 @@ db = SQLAlchemy(app)
 PROTFOLIO_PASSKEY = '2068'
 
 #------------------
+teams = [
+    {"id": 1, "name": "Team A", "score": 0}
+]
+next_team_id = 2
+
 #---DB_Model----
 class Quest(db.Model):
 	id = db.Column(db.Integer, primary_key= True)
