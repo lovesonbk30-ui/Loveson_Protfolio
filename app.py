@@ -115,6 +115,6 @@ def reset_score(team_id):
 def delete_team(team_id):
     global teams
     teams = [t for t in teams if t['id'] != team_id]
-    return redirect(url_for('home'))
+    return redirect(url_for('score'))
 if __name__ == '__main__':
     app.run(debug=True)
