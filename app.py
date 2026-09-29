@@ -77,10 +77,14 @@ def message():
 def send():
     return render_template('About.html')
 
-@app.route('/score')
+@app.route('/score', methods=['GET', 'POST'])
 def score():
-    # FIX: Pass the teams list so Score.html can render them
-    return render_template('Score.html', teams=teams)				
+    global number
+   
+    if request.method=='POST':
+    	number = int(request.form['number'])
+    
+    return render_template_string(html, teams=teams, number=number)', teams=teams)				
 
 @app.route('/add_team', methods=['POST'])
 def add_team():
