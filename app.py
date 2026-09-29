@@ -84,7 +84,7 @@ def score():
     if request.method=='POST':
     	number = int(request.form['number'])
     
-    return render_template_string('Score.html', teams=teams, number=number)		
+    return render_template('Score.html', teams=teams, number=number)		
 
 @app.route('/add_team', methods=['POST'])
 def add_team():
