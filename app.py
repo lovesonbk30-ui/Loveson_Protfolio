@@ -17,7 +17,7 @@ teams = [
     {"id": 1, "name": "Team A", "score": 0}
 ]
 next_team_id = 2
-
+number = None
 # --- DB Model ----
 class Quest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -84,7 +84,7 @@ def score():
     if request.method=='POST':
     	number = int(request.form['number'])
     
-    return render_template_string(html, teams=teams, number=number)', teams=teams)				
+    return render_template_string(html, teams=teams, number=number)		
 
 @app.route('/add_team', methods=['POST'])
 def add_team():
