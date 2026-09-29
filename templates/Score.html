@@ -96,13 +96,132 @@
             font-size: 1.1rem;
             padding: 12px 24px;
         }
+        .Series{
+        padding: 15px;
+        text-align: center;
+        justify-content:center;
+        margin: 50px auto;
+        background: white;
+        border-radius: 20px;
+        width: 700px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h2{
+        color: orange;
+        font-size:2rem
+        }
+        input{
+        padding: 8px;
+        border-radius: 20px;
+        font-size: 20px;
+        width: 550px;
+        text-align: center;
+        }
+        .numb-btn{
+        padding: 8px;
+        background: blue;
+        color: white;
+        font-size: 26px;
+        width: 95%;
+        border: none;
+        border-radius: 18px;
+        margin: 14px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        }
+       
+        .numb-btn:hover{
+        background: #3F09B9;
+        opacity: 0.85;
+        }
+        h3{
+        color: red;
+        font-size: 22px;
+        }
+        .numbers{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        gap: 10px;
+        justify-content: center;
+        }
+        .sub-numb{
+        width: 50px;
+        height: 45px;
+        background: #f5f5f5;
+        border-radius: 14px;
+        font-size: 24px;
+        user-select: none;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        transition: 0.2s;
+        
+        }
+        .sub-numb a{
+        text-decoration: none;
+        color: black;
+        }
+         .sub-numb:hover {
+            transform: scale(1.08);
+            background: #ffe0bd;
+        }
+        .sub-numb.clicked{
+        color: red;
+        background: #ffe5e5;
+            }
+ .creator{
+text-align:center;
+background: #27272A;
+color: orange;
+padding: 2px;
+font-size: 1.5rem;
+margin-top: 1000px;
+font-weight: bold;
+}
+.creator span{
+font-size: 1.6rem;
+color: white;
+font-weight: bold;
+}
+.creator p{
+font-size: 20px;
+color: #E0DFE2;
+margin-top: 1px;
+}
+     
+
     </style>
 </head>
 <body>
     <h1>QUIZ SCOREBOARD:</h1>
+   
 
+<div class='Series'>
+<h2> 🔢Choose your lucky number </h2>
+<form method='POST' action = {{url_for('score')}}>
+<input type='number' name='number' placeholder='Enter your desired number'> <br> 
+<button class='numb-btn' type='submit'> Generate </button>
+</form>
+
+
+{% if number %}
+<h3> Numbers up to {{number}} </h3>
+
+<div class='numbers'>
+{% for i in range(1, number+1) %}
+<div class='sub-numb' onclick="this.classList.toggle('clicked')">
+   <a href='#score-id' >  {{i}} </a>
+</div>
+{%endfor%}
+</div>
+{%endif%}
+</div>
+
+   <section id='score-id'>
     <div class="scoreboard-container">
-        {% for team in teams %}
+   
+          {% for team in teams %}
         <div class="score-board">
             <!-- Edit Team Name -->
             <form action="{{ url_for('update_team', team_id=team.id) }}" method="POST" class="team-name-form">
@@ -148,6 +267,12 @@
         <form action="{{ url_for('add_team') }}" method="POST">
             <button type="submit" class="btn add-team-btn">+ Add New Team</button>
         </form>
+     
     </div>
+    </section>   
+    <footer class='creator'>
+Designed by: <span> Loveson B.K. </span>
+<p> ©All rights reserved to Loveson Site </p>
+</footer>
 </body>
 </html>
