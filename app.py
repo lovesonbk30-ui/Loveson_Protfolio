@@ -196,7 +196,7 @@ def score():
     
     return render_template('Score.html', teams=teams, number=number)		
 
-@app.route('/plus_team', methods=['POST'])
+@app.route('/add_team', methods=['POST'])
 def add_team():
     global next_team_id
     teams.append({
@@ -281,7 +281,7 @@ def quiz():
 	)
 	
 @app.route('/add-team', methods=['POST'])
-def add_team():
+def add-team():
 		team_name = request.form.get('team_name', '').strip()
 		if team_name:
 			if 'teams' not in session:
