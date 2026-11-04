@@ -272,7 +272,7 @@ def quiz():
 				active_question = q
 				break
 	return render_template(
-	Quiz.html,
+	'Quiz.html',
 	rounds=rounds,
 	current_round = round_num,
 	questions = CRQ,
@@ -281,7 +281,7 @@ def quiz():
 	)
 	
 @app.route('/add-team', methods=['POST'])
-def add-team():
+def add_team():
 		team_name = request.form.get('team_name', '').strip()
 		if team_name:
 			if 'teams' not in session:
