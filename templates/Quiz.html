@@ -31,6 +31,21 @@ display: flex;
 align-items: center;
 min-height: 100vh;
 }
+  .exit {
+position: absolute;
+top: 20px;
+right: 25px;
+background: transparent;
+border: none;
+color: var(--text-sub);
+font-size:2rem;
+font-weight: bold;
+cursor: pointer;
+text-decoration: none;
+}
+.exit:hover{
+color: #ef4444;    
+}
 .container {
 background: var(--card-bg);
 border-radius: 16px;
@@ -361,6 +376,7 @@ font-style: italic
 </head>
 <body>
 <div class='container'>
+<a href="/home" class="exit"> &times; </a>
 <h1> Welcome to Quiz Mania </h1>
 
 <form class='team-form' method='POST' action='/add-team'>
