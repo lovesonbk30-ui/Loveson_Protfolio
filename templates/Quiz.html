@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset='UTF-8'>
+      <meta name="viewport" content="width-device-width, initial-scale=1.0" >
+<style>
+    :root {
+        --bg-color: #0f172a;
+        --card-bg: #1e293b;
+        --accent: #38bdf8;
+        --accent-hover: #0284c7;
+        --text-main: #f8fafc;
+        --text-sub: #94a3b8;
+        --ans-btn: #eab308;
+        --ans-btn-hover: #ca8a04;
+        --round-active: #a855f7;
+        --score-bg: #334155;
+        --team-btn: #10b981;
+        --team-btn-hover: #059669;
+        --pass-btn: #3b82f6;
+        --pass-bn-hover: #2563eb;
+    }
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Sans-serif;
+background-color: var(--bg-color);
+color: var(--text-main);
+margin: 0px;
+padding: 20px;
+justify-content: center;
+display: flex;
+align-items: center;
+min-height: 100vh;
+}
+.container {
+background: var(--card-bg);
+border-radius: 16px;
+padding: 30px;
+width: 100%;
+nax-width: 900px;
+box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5)
+}
+
+h1{
+margin-bottom: 15px;
+color: var(--accent);
+text-align: center;
+font-size: 2.5rem;
+
+}
+.scoreboard{
+background: var(--score-bg);
+border-radius: 12px;
+padding: 15px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+margin-bottom: 20px;
+gap: 12px;
+}
+.team-card{
+background: #1e293b;
+padding: 10px 15px;
+border-radius: 8px;
+border: 1px solid #475569;
+min-width: 110px;
+position: relative;
+}
+.team_name{
+font-size: 0.85rem;
+color: var(--text-sub);
+text-transform: uppercase;
+word-break: break-all;
+}
+.team_score {
+font-size: 1.3rem;
+color: #4ade80;
+font-weight: bold;
+}
+.remove_team {
+position: absolute;
+top: 2px;
+right: 6px;
+color:#ef4444;
+text-decoration: none;
+font-weight: bold;
+font-size: 1rem;
+}
+.remove_team:hover{
+color: #dc2626; 
+}
+.team-form {
+display: flex;
+justify-content: center;
+gap: 10px;
+margin-bottom: 20px;
+}
+.team-input {
+background-color: #0f172a;
+border: 1px solid #475569;
+color: var(--text-main);
+padding: 10px 15px;
+border-radius: 8px;
+font-size: 1rem;
+width: 240px;
+}
+.add-team-btn {
+background-color: var(--accent);
+color: #0f172a;
+border: none;
+padding: 10px 18px;
+font-weight: bold;
+border-radius: 8px;
+cursor: pointer;
+trabsition: background 0.2s;
+}
+.add-team-btn:hover {
+background: var(--accent);
+}
+.control_buttons {
+display: flex;
+justify-content: center;
+gap: 15px;
+margin-bottom: 25px;
+}
+.reset-score-btn {
+background-color: #ef4444;
+color: white;
+border: none;
+padding: 8px 14px;
+transition: background 0.2s;
+border-radius: 6px;
+font-size: 0.85rem;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+}
+     .reset-score-btn:hover { background-color: #dc2626; 
+     }
+.rounds-bar {
+display: flex;
+gap: 10px;
+justify-content: center;
+margin-bottom: 25px;
+flex-wrap: wrap;
+}
+    .round-tab {
+            background-color: #334155;
+            color: var(--text-main);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .round-tab:hover { background-color: #475569; }
+        .round-tab.active { background-color: var(--round-active); color: #fff; }
+
+.grid-header{
+font-size: 0.95rem;
+color: var(--text-sub);
+margin-bottom: 12px;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+text-align: center;
+}
+.number-grid{
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+gap: 10px;
+justify-content: center;
+max-height: 250px;
+overflow-y: auto;
+padding: 5px;
+border: 1px solid #334155;
+border-radius: 10px;
+background: #0f172a;
+}
+.num-checkbox{
+display: none;
+}
+.num-btn {
+background: #334155;
+color: var(--text-main);
+border: 2px solid transparent;
+padding: 10px;
+font-size: 1rem;
+font-weight: bold;
+border-radius: 8px;
+cursor: pointer;
+user-select: none;
+text-decoration: none;
+display: inline-block;
+transition: all 0.3s ease;
+text-align: center;
+}
+  .num-btn:hover { 
+  background-color: #475569; transform: scale(1.05);
+   }
+.num-btn:hover,
+.num-btn.visited {
+    background-color: orange; /* Change to your preferred active color */
+    color: #ffffff;
+    border-color: #0056b3;
+}
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background-color: rgba(15, 23, 42, 0.95);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+}
+.modal-content {
+background: var(--card-bg);
+border: 2px solid #334155;
+border-radius: 20px;
+padding: 40px;
+width: 85%;
+max-width: 900px;
+box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+max-height: 90vh;
+overflow-y: auto;
+}
+.close-btn {
+position: absolute;
+top: 20px;
+right: 25px;
+background: transparent;
+border: none;
+color: var(--text-sub);
+font-size:2rem;
+font-weight: bold;
+cursor: pointer;
+text-decoration: none;
+}
+.close-btn:hover{
+color: #ef4444;
+}
+.question-image {
+max-width: 100%;
+max-height: 320px;
+border-radius: 12px;
+border: 2px solid #475569;
+object-fit: cover;
+box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4);
+}
+.modal-q-text {
+font-size: 1.8rem;
+line-height: 1.4;
+color: var(--text-main);
+margin: 0;
+}
+.show-ans-btn {
+background-color: var(--ans-btn);
+color: #000;
+border: none;
+padding: 12px 28px;
+font-size: 1.1rem;
+font-weight: bold;
+border-radius:10px;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+}
+.show-ans-btn:hover {
+background-color: var(--ans-btn-hover);
+}
+   .modal-ans-box {
+            font-weight: bold;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.3rem;
+            background-color: rgba(234, 179, 8, 0.15);
+            color: var(--ans-btn);
+            border: 2px dashed var(--ans-btn);
+            width: 100%;
+            box-sizing: border-box;
+        }
+.scoring_section {
+display: flex;
+flex-direction: column;
+gap: 15px;
+width: 100%;
+align-items: center;
+background: #0f172a;
+padding: 20px;
+border-radius: 12px;
+border: 1px solid #334155;
+}
+.section-title{
+font-size: 0.9rem;
+color: var(--text-sub);
+text-transform: uppercase;
+letter-spacing: 0.05em;
+font-weight: bold;
+}
+.team-action-group {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: #1e293b;
+padding: 10px 15px;
+border-radius: 8px;
+width: 100%;
+box-sizing: border-box;
+}
+.team-name-display {
+font-weight: bold;
+font-size: 1.1rem;
+}
+.btn-group {
+display: flex;
+gap: 8px;
+}
+.btn-correct {
+background-color: var(--team-btn);
+color: white;
+border: none;
+padding: 8px 14px;
+border-radius: 8px;
+font-weight: bold;
+cursor: pointer;
+text-decoration: none;
+font-size: 0.9rem;
+}
+.btn-correct:hover {
+background-color: var(--team-btn-hover);
+}
+.btn-pass {
+background-color: var(--pass-btn);
+color: white;
+border: none;
+padding: 8px 14px;
+border-radius: 8px;
+font-weight: bold;
+cursor: pointer;
+text-decoration: none;
+font-size: 0.9rem;
+}
+.btn-pass:hover {
+background-color: var(--pass-btn-hover);
+}
+.no-teams-msg {
+color: var(--text-sub);
+font-style: italic
+}
+</style>
+</head>
+<body>
+<div class='container'>
+<h1> Welcome to Quiz Mania </h1>
+
+<form class='team-form' method='POST' action='/add-team'>
+<input type='text' name='team_name' class='team-input' placeholder='Enter team name...' required
+autocomplete="off">
+<button type="submit" class='add-team-btn'> +Add Team </button>
+</form>
+
+<div class='scoreboard'>
+  {% if session.teams %}
+      {% for team_name, score in session.teams.items() %}
+          <div class='team-card'>
+              <a href="/remove-team?team={{ team_name }}"  class="remove_team" title="Remove Team"> &times; </a>
+              <div class='team_name'>
+                {{ team_name }}
+                </div>
+                <div class='team_score'>
+                 {{ score }} pts
+                 </div>
+                 </div>
+                 
+           {% endfor %}
+           {% else %}
+             <div class='no-team-msg'> No teams added yet. Use the form above to add teams! </div>
+             {% endif %}
+             </div>
+                 
+<div class='control_buttons'>
+ <a href='/quiz?round={{ current_round }}&reset_scores=1' class="reset-score-btn"> Reset All Scores </a>
+ </div>
+ 
+ <div class='rounds-bar'>
+ {% for r in rounds %}
+  <a href='/quiz?round={{r}}' class='round-tab{% if r == current_round %} active {% endif %}' >
+  {% if r==4 %} Visual Round (R4) 
+  {%else%} Round {{r}}
+  {%endif%}
+    </a>
+  {% endfor %}
+  </div>
+
+<div class='grid-header'>
+   {% if current_round == 4 %}
+   Visual Round Question
+   {% else %} Round {{current_round }} Question {% endif %}
+   </div>           
+
+<div class='number-grid'>
+   {% for q in questions %}
+      <a href='/quiz?round={{ current_round }}&q_id={{ q.id }}' 
+         class='num-btn' 
+         onclick="toggleVisited(this, '{{ q.id }}')">
+         {{ loop.index }}
+      </a>
+   {% endfor %}
+</div>
+
+<script>
+  // 1. Toggle highlight (Add on click, remove on second click to Undo)
+  function toggleVisited(element, qId) {
+    let visited = JSON.parse(sessionStorage.getItem('visitedQuestions') || '[]');
+    
+    if (visited.includes(qId)) {
+      visited = visited.filter(id => id !== qId);
+      element.classList.remove('visited');
+    } else {
+      visited.push(qId);
+      element.classList.add('visited');
+    }
+    
+    sessionStorage.setItem('visitedQuestions', JSON.stringify(visited));
+  }
+
+  // 2. Restore highlights across question refreshes during the session
+  document.addEventListener('DOMContentLoaded', () => {
+    let visited = JSON.parse(sessionStorage.getItem('visitedQuestions') || '[]');
+    document.querySelectorAll('.num-btn').forEach(btn => {
+      let urlParams = new URLSearchParams(btn.getAttribute('href').split('?')[1]);
+      if (visited.includes(urlParams.get('q_id'))) {
+        btn.classList.add('visited');
+      }
+    });
+  });
+
+  // 3. Optional: Clear session data when user explicitly finishes/leaves quiz route
+  function exitSession() {
+    sessionStorage.removeItem('visitedQuestions');
+  }
+</script>
+
+
+</div>
+
+{% if active_question %}
+<div class='modal-overlay'>
+  <div class='modal-content'>
+     <a href='/quiz?round={{ current_round }}' class='close-btn'>
+     &times; </a>
+     
+     <div class='modal-q-num'>
+        {% if current_round == 4 %} Visual Round • Question {% else %} Round {{current_round}} • Question {% endif %}
+     </div>
+{% if active_question.image %}
+            <img src="{{ active_question.image }}" alt="Visual Question Prompt" class="question-image">
+        {% endif %}
+        
+<h2 class='modal-q-text'> {{ active_question.text}} </h2>
+
+{% if not reveal %}
+   <a href='/quiz?round={{ current_round }}&q_id={{ active_question.id }}&reveal=1' class='show-ans-btn'> Show Answer </a>
+   
+   {% else %}
+ <div class='modal-ans-box'>
+ 💡Answer: {{ active_question.ans }} </div>
+ <div class='scoring_section'>
+ <div class='section-title'>
+ Award Points (Correct or Passed Correctly)</div>
+ {% if session.teams %}
+   {% for team_name in session.teams.keys() %} 
+     <div class='team-action-group'>
+     <span class='team-name-display'>
+     {{ team_name }}
+     </span>
+     
+ <div class='btn-group'>
+ <a href='/quiz?round={{ current_round }}&q_id={{ active_question.id }}&reveal=1&team={{ team_name }}&pts=10' class='btn-correct'> +10 Correct </a>
+ 
+ <a href='/quiz?round={{ current_round }}&q_id={{ active_question.id }}&reveal=1&team={{ team_name }}&pts=5' class='btn-pass'> +5 Passing Mark </a>
+ 
+ </div>
+  
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-teams-msg">Please add teams on the main screen to award scores.</div>
+                     {% endif %}
+ </div>
+{% endif %}
+  </div>
+</div>
+{% endif %}
+</body>
