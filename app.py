@@ -196,8 +196,8 @@ def score():
     
     return render_template('Score.html', teams=teams, number=number)		
 
-@app.route('/add_team', methods=['POST'])
-def add_team():
+@app.route('/plus_team', methods=['POST'])
+def plus_team():
     global next_team_id
     teams.append({
         "id": next_team_id,
